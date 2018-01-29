@@ -1,7 +1,6 @@
 """
 Core parsing methods
 """
-from plugins.base import clean_fluff, split_artist_title, clean_artist, clean_title
 import fallback_artist
 import fallback_title
 
@@ -26,15 +25,8 @@ def combine_splitters(splitters):
                 return result
     return combine_func
 
-def reduce_plugins(fallbacks):
-    split = []
-    if fallbacks:
-        for fallback in fallbacks:
-            split.append(fallback)
-    before = [clean_fluff]
-    split = [split_artist_title]
-    after = [mapArtistTitle(clean_artist, clean_title), mapTitle(clean_title)]
-    return [flow(before), combine_splitters(split), flow(after)]
+def reduce_plugins(plugins):
+    return [flow(plugins['before']), combine_splitters(plugins['split']), flow(plugins['after'])]
 
 # Helpful-ish plugin checks
 def checkPlugin(plugin):
@@ -51,20 +43,20 @@ def mapTitle(fn):
         return [parts[0], fn(parts[1])]
     return mapT
 
-def mapArtistTitle(mapArtist, mapTitle):
+def mapArtistTitle(map_artist, map_title):
     def mapAT(parts):
-        return [mapArtist(parts[0]), mapTitle(parts[1])]
+        return [map_artist(parts[0]), map_title(parts[1])]
     return mapAT
 
 def get_song_artist_title(text, options, plugins):
-    fallbacks = []
     if options:
         if 'defaultArtist' in options:
-            fallbacks.append(fallback_artist.fallback)
+            plugins['split'].append(fallback_artist(options['defaultArtist']))
         if 'defaultTitle' in options:
-            fallbacks.append(fallback_title.fallback)
-    plugin = reduce_plugins(fallbacks)
+            plugins['split'].append(fallback_title(options['defaultTitle']))
+    plugin = reduce_plugins(plugins)
     checkPlugin(plugin)
+
     split = plugin[1](plugin[0](text))
     if not split:
         return
