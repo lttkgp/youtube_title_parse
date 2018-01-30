@@ -1,7 +1,7 @@
 """
 Fallback to given artist name when no title/artist detected
 """
-def fallback(artist):
+def fallback_artist(artist):
     """
     Fallback method
     """

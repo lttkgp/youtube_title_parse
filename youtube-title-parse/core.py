@@ -1,8 +1,8 @@
 """
 Core parsing methods
 """
-import fallback_artist
-import fallback_title
+from fallback_artist import fallback_artist
+from fallback_title import fallback_title
 
 def flow(functions):
     if not functions:
@@ -28,7 +28,6 @@ def combine_splitters(splitters):
 def reduce_plugins(plugins):
     return [flow(plugins['before']), combine_splitters(plugins['split']), flow(plugins['after'])]
 
-# Helpful-ish plugin checks
 def checkPlugin(plugin):
     if not plugin[1]:
         print('no title splitter was specified by any plugin')
