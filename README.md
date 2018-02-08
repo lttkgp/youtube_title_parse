@@ -1,4 +1,4 @@
-# youtube\_title\_parse
+# youtube title parse
 
 Parse the title of a YouTube video to try and get artist & song name.
 
@@ -8,7 +8,7 @@ Video titles on YouTube follow no strict format, and so passing the titles direc
 
 ## Installation
 
-To install Requests, simply use pipenv (or pip, of course):
+To install [youtube\_title\_parse](https://pypi.python.org/pypi/youtube-title-parse/), simply use pipenv (or pip, of course):
 
 ```bash
 pipenv install youtube_title_parse
