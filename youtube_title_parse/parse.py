@@ -15,12 +15,16 @@ def get_artist_title(text, options={}):
     """
     Parse method
     """
-    return get_song_artist_title(text, options, {
+    result = get_song_artist_title(text, options, {
         'before': [plugins.remove_file_extensions, plugins.clean_fluff],
         'split': [plugins.split_artist_title, plugins.split_text],
         'after': [mapArtistTitle(plugins.clean_artist, plugins.clean_title),
                   mapArtistTitle(plugins.clean, plugins.clean), mapTitle(plugins.clean_common_fluff)]
     })
+    if result:
+        return "%s - %s" % (result[0], result[1])
+    else:
+        return text
 
 def process(args):
     options = {}
@@ -30,7 +34,7 @@ def process(args):
         options['defaultTitle'] = args.defaultTitle
     result = get_artist_title(args.youtube_title, options)
     if result:
-        print("%s - %s" % (result[0], result[1]))
+        print(result)
     else:
         print(args.youtube_title)
     return result
