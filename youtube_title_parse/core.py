@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
 """
 Core parsing methods
 """
-from youtube_title_parse.fallback_artist import fallback_artist
-from youtube_title_parse.fallback_title import fallback_title
+try:
+    from youtube_title_parse.fallback_artist import fallback_artist
+    from youtube_title_parse.fallback_title import fallback_title
+except ImportError:
+    from fallback_artist import fallback_artist
+    from fallback_title import fallback_title
 
 def flow(functions):
     if not functions:

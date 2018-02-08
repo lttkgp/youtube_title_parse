@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Fallback to given artist name when no title/artist detected
 """

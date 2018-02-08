@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Fallback to given title when no title/artist detected
 """

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Remove file extensions from string
 """

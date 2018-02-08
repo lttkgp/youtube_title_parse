@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
 """
 Parse the title of a YouTube video to try and get artist & song name
 """
+from __future__ import print_function, absolute_import
 import argparse
-import youtube_title_parse.plugins as plugins
-from youtube_title_parse.core import mapArtistTitle, mapTitle, get_song_artist_title
+try:
+    import youtube_title_parse.plugins as plugins
+    from youtube_title_parse.core import mapArtistTitle, mapTitle, get_song_artist_title
+except ImportError:
+    import plugins
+    from core import mapArtistTitle, mapTitle, get_song_artist_title
 
 def get_artist_title(text, options={}):
     """
@@ -26,7 +32,7 @@ def process(args):
     if result:
         print("%s - %s" % (result[0], result[1]))
     else:
-        print("Could not extract an artist and title.")
+        print(args.youtube_title)
     return result
 
 def main():

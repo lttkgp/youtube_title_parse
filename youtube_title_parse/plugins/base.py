@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Base method to parse title
 """
