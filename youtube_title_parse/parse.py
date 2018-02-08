@@ -2,21 +2,18 @@
 Parse the title of a YouTube video to try and get artist & song name
 """
 import argparse
-from plugins.base import clean_fluff, split_artist_title, clean_artist, clean_title
-from plugins.remove_file_extensions import remove_file_extensions
-from plugins.quoted_title import split_text, clean
-from plugins.common import clean_common_fluff
-from core import mapArtistTitle, mapTitle, get_song_artist_title
+import youtube_title_parse.plugins as plugins
+from youtube_title_parse.core import mapArtistTitle, mapTitle, get_song_artist_title
 
 def get_artist_title(text, options={}):
     """
     Parse method
     """
     return get_song_artist_title(text, options, {
-        'before': [remove_file_extensions, clean_fluff],
-        'split': [split_artist_title, split_text],
-        'after': [mapArtistTitle(clean_artist, clean_title),
-                  mapArtistTitle(clean, clean), mapTitle(clean_common_fluff)]
+        'before': [plugins.remove_file_extensions, plugins.clean_fluff],
+        'split': [plugins.split_artist_title, plugins.split_text],
+        'after': [mapArtistTitle(plugins.clean_artist, plugins.clean_title),
+                  mapArtistTitle(plugins.clean, plugins.clean), mapTitle(plugins.clean_common_fluff)]
     })
 
 def process(args):
@@ -25,7 +22,6 @@ def process(args):
         options['defaultArtist'] = args.defaultArtist
     if args.defaultTitle:
         options['defaultTitle'] = args.defaultTitle
-    print(args.youtube_title)
     result = get_artist_title(args.youtube_title, options)
     if result:
         print("%s - %s" % (result[0], result[1]))
@@ -35,7 +31,7 @@ def process(args):
 
 def main():
     argparser = argparse.ArgumentParser(
-        description='youtube-title-parse', formatter_class=argparse.RawTextHelpFormatter)
+        description='youtube_title_parse', formatter_class=argparse.RawTextHelpFormatter)
     argparser.add_argument(
         "youtube_title", type=str, help='required youtube video title')
     argparser.add_argument(
