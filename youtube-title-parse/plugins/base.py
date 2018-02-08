@@ -56,6 +56,9 @@ def clean_fluff(text):
     text = re.sub(
         r'\s*(ALBUM TRACK\s*)?(album track\s*)', '', text, flags=re.IGNORECASE) # (ALBUM TRACK)
     text = re.sub(r'\s*\(\s*of+icial\s*\)', '', text, flags=re.IGNORECASE) # (official)
+    text = re.sub(r'\s*\(\s*lyric(s)?\s*\)', '', text, flags=re.IGNORECASE) # (lyrics)
+    text = re.sub(
+        r'\s*\(\s*(of+icial)?\s*lyric(s)?\s*\)', '', text, flags=re.IGNORECASE) # (official lyrics)
     text = re.sub(r'\s*\(\s*[0-9]{4}\s*\)', '', text, flags=re.IGNORECASE) # (1999)
     text = re.sub(r'\s+\(\s*(HD|HQ)\s*\)$', '', text) # HD (HQ)
     text = re.sub(r'[\s\-–_]+(HD|HQ)\s*$', '', text) # HD (HQ)

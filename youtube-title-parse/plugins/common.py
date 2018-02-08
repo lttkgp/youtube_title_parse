@@ -13,4 +13,5 @@ def clean_common_fluff(title):
     # Lyrics videos
     title = re.sub(r'(\s*[-~_/]\s*)?\b(with\s+)?lyrics\s*', '', title, flags=re.IGNORECASE)
     title = re.sub(r'\(\s*(with\s+)?lyrics\s*\)\s*', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\s*\(\s*\)', '', title) # ()
     return title.strip()
