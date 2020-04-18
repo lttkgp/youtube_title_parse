@@ -54,6 +54,7 @@ def clean_fluff(text):
     text = re.sub(
         r'\s*(of+icial\s*)?(music\s*)?video',
         '', text, flags=re.IGNORECASE) # (official)? (music)? video
+    text = re.sub(r'\s*(full\s*)?album', '', text, flags=re.IGNORECASE) # (full)? album
     text = re.sub(
         r'\s*(ALBUM TRACK\s*)?(album track\s*)', '', text, flags=re.IGNORECASE) # (ALBUM TRACK)
     text = re.sub(r'\s*\(\s*of+icial\s*\)', '', text, flags=re.IGNORECASE) # (official)
@@ -61,8 +62,8 @@ def clean_fluff(text):
     text = re.sub(
         r'\s*\(\s*(of+icial)?\s*lyric(s)?\s*\)', '', text, flags=re.IGNORECASE) # (official lyrics)
     text = re.sub(r'\s*\(\s*[0-9]{4}\s*\)', '', text, flags=re.IGNORECASE) # (1999)
-    text = re.sub(r'\s+\(\s*(HD|HQ)\s*\)$', '', text) # HD (HQ)
-    text = re.sub(r'[\s\-–_]+(HD|HQ)\s*$', '', text) # HD (HQ)
+    text = re.sub(r'\s+\(\s*(HD|HQ|[0-9]{3,4}p|4K)\s*\)$', '', text) # (HD) (HQ) (1080p) (4K)
+    text = re.sub(r'[\s\-–_]+(HD|HQ|[0-9]{3,4}p|4K)\s*$', '', text) # - HD - HQ - 720p - 4K
     return text
 
 def clean_title(title):
