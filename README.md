@@ -47,4 +47,4 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 ## License
 
-youtube-title-parse is made available under the [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0).
+youtube-title-parse is made available under the [MIT license](https://opensource.org/licenses/MIT).
