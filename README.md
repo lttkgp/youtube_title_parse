@@ -31,7 +31,10 @@ You can also import `youtube_title_parse` as a module.
 
 ```python
 from youtube_title_parse import get_artist_title
-print(get_artist_title("Seoul - Stay With Us (Official Video)"))
+
+artist, title = get_artist_title("Seoul - Stay With Us (Official Video)")
+assert artist == "Seoul"
+assert title == "Stay With Us"
 ```
 
 ## Credits
