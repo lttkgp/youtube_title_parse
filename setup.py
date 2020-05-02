@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 setup(
     name="youtube_title_parse",
     description="Parse the title of a YouTube video to try and get artist & song name",
-    version="1.0.0b2",
+    version="1.0.0b3",
     url="https://github.com/lttkgp/youtube-title-parse",
     author="Naresh R",
     author_email="ghostwriternr@gmail.com",
