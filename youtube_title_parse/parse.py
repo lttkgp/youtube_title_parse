@@ -31,9 +31,9 @@ def get_artist_title(text, options={}):
         },
     )
     if result:
-        return "%s - %s" % (result[0], result[1])
+        return result[0], result[1]
     else:
-        return text
+        return None
 
 
 def process(args):
