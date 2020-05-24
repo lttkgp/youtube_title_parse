@@ -3,6 +3,8 @@ Setup script for youtube_title_parse
 """
 from setuptools import setup, find_packages
 
+tests_require = ["six"]
+
 setup(
     name="youtube_title_parse",
     description="Parse the title of a YouTube video to try and get artist & song name",
@@ -27,6 +29,7 @@ setup(
     keywords=["youtube", "title", "metadata", "parse", "music"],
     packages=find_packages(exclude=["contrib", "docs", "tests*"]),
     install_requires=[],
+    tests_require=tests_require,
     entry_points={
         "console_scripts": ["youtube_title_parse=youtube_title_parse.parse:main"],
     },
