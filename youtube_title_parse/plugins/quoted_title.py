@@ -17,7 +17,7 @@ def looseRegs(sset):
 def startRegs(sset):
     open_set = sset[0]
     close_set = sset[1]
-    return re.compile(r"^" + open_set + r"(.*?)" + close_set + r"\\s*")
+    return re.compile(r"^" + open_set + r"(.*?)" + close_set + r"\s*")
 
 
 def split_text(text):
