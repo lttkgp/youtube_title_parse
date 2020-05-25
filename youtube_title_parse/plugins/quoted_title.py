@@ -14,20 +14,14 @@ def looseRegs(sset):
     return re.compile(open_set + r"(.*?)" + close_set)
 
 
-MATCH_LOOSE_RXES = map(looseRegs, QUOTES)
-
-
 def startRegs(sset):
     open_set = sset[0]
     close_set = sset[1]
     return re.compile(r"^" + open_set + r"(.*?)" + close_set + r"\\s*")
 
 
-MATCH_START_RXES = map(startRegs, QUOTES)
-
-
 def split_text(text):
-    for loose_rex in MATCH_LOOSE_RXES:
+    for loose_rex in map(looseRegs, QUOTES):
         text = re.sub(loose_rex, lambda re_match: r" %s " % re_match.group(), text)
         match = re.search(loose_rex, text)
         if match:
@@ -39,5 +33,7 @@ def split_text(text):
 
 def clean(artistOrTitle):
     return reduce(
-        (lambda text, rx: re.sub(rx, r"\1 ", text)), MATCH_START_RXES, artistOrTitle
+        (lambda text, rx: re.sub(rx, r"\1 ", text)),
+        map(startRegs, QUOTES),
+        artistOrTitle,
     ).strip()
