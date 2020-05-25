@@ -1,16 +1,25 @@
 """
 Setup script for youtube_title_parse
 """
+import pathlib
 from setuptools import setup, find_packages
+
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.md").read_text()
 
 tests_require = ["six"]
 
 setup(
     name="youtube_title_parse",
-    description="Parse the title of a YouTube video to try and get artist & song name",
     version="1.0.0",
+    description="Parse the title of a YouTube video to try and get artist & song name",
+    long_description=README,
+    long_description_content_type="text/markdown",
     url="https://github.com/lttkgp/youtube-title-parse",
-    author="Naresh R",
+    author="lttkgp",
     author_email="ghostwriternr@gmail.com",
     license="MIT",
     classifiers=[

@@ -14,10 +14,9 @@ Video titles on YouTube follow no strict format, and so passing the titles direc
 
 ## Installation
 
-To install [youtube\_title\_parse](https://pypi.python.org/pypi/youtube-title-parse/), simply use pipenv (or pip, of course):
-
+To install [youtube\_title\_parse](https://pypi.python.org/pypi/youtube-title-parse/), simply run:
 ```bash
-pipenv install youtube_title_parse
+pip install youtube_title_parse
 ```
 
 ## Usage
