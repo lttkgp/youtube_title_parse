@@ -28,12 +28,12 @@ MATCH_START_RXES = map(startRegs, QUOTES)
 
 def split_text(text):
     for loose_rex in MATCH_LOOSE_RXES:
-        text = re.sub(loose_rex, " " + r"\1" + " ", text)
+        text = re.sub(loose_rex, lambda re_match: r" %s " % re_match.group(), text)
         match = re.search(loose_rex, text)
         if match:
             split = match.start()
             title = text[split:]
-            artist = text[:, split]
+            artist = text[:split]
             return [artist, title]
 
 

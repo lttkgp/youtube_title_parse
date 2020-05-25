@@ -94,14 +94,14 @@ def clean_title(title):
     title = re.sub(r"\[\s*]", "", title)  # Leftovers after e.g. [1080p]
     title = re.sub(r"【\s*】", "", title)  # Leftovers after e.g. 【MV】
     title = re.sub(
-        r'^(|.*\s)"(.*)"(\s.*|)$', r"\3", title
+        r"^(|.*\s)\"(.*)\"(\s.*|)$", r"\2", title
     )  # Artist - The new "Track title" featuring someone
-    title = re.sub(r"^(|.*\s)'(.*)'(\s.*|)$", r"\3", title)  # 'Track title'
+    title = re.sub(r"^(|.*\s)'(.*)'(\s.*|)$", r"\2", title)  # 'Track title'
     title = re.sub(
-        r'^[/\s,:;~\-–_\s"]+', "", title
+        r"^[/\s,:;~\-–_\s\"]+", "", title
     )  # trim starting white chars and dash
     title = re.sub(
-        r'[/\s,:;~\-–_\s"]+$', "", title
+        r"[/\s,:;~\-–_\s\"]+$", "", title
     )  # trim trailing white chars and dash
     return title
 
@@ -116,10 +116,10 @@ def clean_artist(artist):
         r"\s*[0-1][0-9][0-1][0-9][0-3][0-9]\s*", "", artist
     )  # date formats ex. 130624
     artist = re.sub(
-        r'^[/\s,:;~\-–_\s"]+', "", artist
+        r"^[/\s,:;~\-–_\s\"]+", "", artist
     )  # trim starting white chars and dash
     artist = re.sub(
-        r'[/\s,:;~\-–_\s"]+$', "", artist
+        r"[/\s,:;~\-–_\s\"]+$", "", artist
     )  # trim trailing white chars and dash
     return artist
 
