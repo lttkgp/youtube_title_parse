@@ -237,7 +237,7 @@ tests = [
             "Shearwater",
             'Black Is The Color (from the "Colors" episode of Radiolab)',
         ],
-        "optional": True,
+        "skip": True,
     },
     {
         "input": "The Notwist - Kong [OFFICIAL VIDEO]",
