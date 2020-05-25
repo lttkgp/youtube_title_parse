@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from six import with_metaclass
-from .meta import TestSequenceMeta
+from .meta import MetaTestSequence
 
 tests = [
     # https://youtu.be/A2RwHnfI2y8
@@ -36,7 +36,7 @@ tests = [
 ]
 
 
-class TestSequence(with_metaclass(TestSequenceMeta, unittest.TestCase)):
+class TestSequence(with_metaclass(MetaTestSequence, unittest.TestCase)):
     test_cases = tests
     test_type = __file__
 

@@ -3,7 +3,7 @@ import os
 from youtube_title_parse import get_artist_title
 
 
-class TestSequenceMeta(type):
+class MetaTestSequence(type):
     def __new__(mcs, name, bases, attrs):
         def should_skip(test_params):
             if not test_params:
