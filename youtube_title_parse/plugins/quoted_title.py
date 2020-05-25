@@ -5,7 +5,7 @@ Handle titles with quotes
 import re
 from functools import reduce
 
-QUOTES = ["“”", '""', "''"]
+QUOTES = ["“”", ("\x9c", "\xe2\x80\x9d"), '""', "''"]
 
 
 def looseRegs(sset):
@@ -22,7 +22,7 @@ def startRegs(sset):
 
 def split_text(text):
     for loose_rex in map(looseRegs, QUOTES):
-        text = re.sub(loose_rex, lambda re_match: r" %s " % re_match.group(), text)
+        text = re.sub(loose_rex, lambda re_match: r" %s " % re_match.group(), text, 1)
         match = re.search(loose_rex, text)
         if match:
             split = match.start()
