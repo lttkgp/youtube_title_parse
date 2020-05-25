@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from six import with_metaclass
-from .meta import TestSequenceMeta
+from .meta import MetaTestSequence
 
 # K-pop song titles taken from JYP entertainment's Most Popular page:
 # https://www.youtube.com/user/jypentertainment/videos?flow=grid&view=0&sort=p
@@ -101,7 +101,7 @@ tests = [
 ]
 
 
-class TestSequence(with_metaclass(TestSequenceMeta, unittest.TestCase)):
+class TestSequence(with_metaclass(MetaTestSequence, unittest.TestCase)):
     test_cases = tests
     test_type = __file__
 

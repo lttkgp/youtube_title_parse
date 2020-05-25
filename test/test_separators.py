@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from six import with_metaclass
-from .meta import TestSequenceMeta
+from .meta import MetaTestSequence
 
 tests = [
     # https://www.youtube.com/watch?v=dYnDCHUzzaY
@@ -11,14 +11,14 @@ tests = [
         # Ideal would be to include the Hangul but it's in
         # [] which means it's deleted for now.
         "expected": ["HA:TFELT", "Truth"],
-        "optional": True,
+        "skip": True,
     },
     # https://www.youtube.com/watch?v=Qk52ypnGs68
     # "-" is a possible separator, but should not be used in this case.
     {
         "input": 'T-ARA[티아라] "NUMBER NINE [넘버나인]" M/V',
         "expected": ["T-ARA", "NUMBER NINE"],
-        "optional": True,
+        "skip": True,
     },
     # https://www.youtube.com/watch?v=aeo_nWsu5cs
     {
@@ -28,7 +28,7 @@ tests = [
 ]
 
 
-class TestSequence(with_metaclass(TestSequenceMeta, unittest.TestCase)):
+class TestSequence(with_metaclass(MetaTestSequence, unittest.TestCase)):
     test_cases = tests
     test_type = __file__
 

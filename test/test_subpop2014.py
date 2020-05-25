@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from six import with_metaclass
-from .meta import TestSequenceMeta
+from .meta import MetaTestSequence
 
 tests = [
     {
@@ -237,7 +237,7 @@ tests = [
             "Shearwater",
             'Black Is The Color (from the "Colors" episode of Radiolab)',
         ],
-        "optional": True,
+        "skip": True,
     },
     {
         "input": "The Notwist - Kong [OFFICIAL VIDEO]",
@@ -282,7 +282,7 @@ tests = [
 ]
 
 
-class TestSequence(with_metaclass(TestSequenceMeta, unittest.TestCase)):
+class TestSequence(with_metaclass(MetaTestSequence, unittest.TestCase)):
     test_cases = tests
     test_type = __file__
 
