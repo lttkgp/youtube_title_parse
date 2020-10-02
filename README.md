@@ -1,4 +1,3 @@
-
 [![PyPI version shields.io](https://img.shields.io/pypi/v/youtube-title-parse.svg)](https://pypi.org/project/youtube-title-parse/)
 [![PyPI license](https://img.shields.io/pypi/l/youtube-title-parse.svg)](https://pypi.org/project/youtube-title-parse/)
 [![PyPI status](https://img.shields.io/pypi/status/youtube-title-parse.svg)](https://pypi.org/project/youtube-title-parse/)
@@ -14,7 +13,8 @@ Video titles on YouTube follow no strict format, and so passing the titles direc
 
 ## Installation
 
-To install [youtube\_title\_parse](https://pypi.python.org/pypi/youtube-title-parse/), simply run:
+To install [youtube_title_parse](https://pypi.python.org/pypi/youtube-title-parse/), simply run:
+
 ```bash
 pip install youtube_title_parse
 ```
@@ -33,6 +33,7 @@ Seoul - Stay With Us
 ### Module
 
 You can also import `youtube_title_parse` as a module.
+If the module can successfully parse the input, `get_artist_title` will return a tuple of the format `[artist, title]` which you can use as below. If not found, `[None, None]` is returned.
 
 ```python
 from youtube_title_parse import get_artist_title
