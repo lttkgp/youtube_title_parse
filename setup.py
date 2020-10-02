@@ -32,7 +32,7 @@ setup(
     ],
     keywords=["youtube", "title", "metadata", "parse", "music"],
     packages=find_packages(exclude=["contrib", "docs", "test*"]),
-    install_requires=["wheel","twine"],
+    install_requires=[],
     tests_require=tests_require,
     entry_points={
         "console_scripts": ["youtube_title_parse=youtube_title_parse.parse:main"],
