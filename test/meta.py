@@ -23,9 +23,9 @@ class MetaTestSequence(type):
                 if "options" in test_params:
                     artist, title = get_artist_title(
                         input, options=test_params["options"]
-                    ) or (None, None)
+                    )
                 else:
-                    artist, title = get_artist_title(input) or (None, None)
+                    artist, title = get_artist_title(input)
                 self.assertEqual(title, expected[1])
                 self.assertEqual(artist, expected[0])
 
