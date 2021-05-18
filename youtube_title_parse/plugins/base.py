@@ -62,16 +62,20 @@ def clean_fluff(text):
     text = re.sub(
         r"\s*(of+icial\s*)?(music\s*)?video", "", text, flags=re.IGNORECASE
     )  # (official)? (music)? video
-    text = re.sub(r"\s*(full\s*)?album", "", text, flags=re.IGNORECASE)  # (full)? album
+    text = re.sub(r"\s*(full\s*)?album", "", text,
+                  flags=re.IGNORECASE)  # (full)? album
     text = re.sub(
         r"\s*(ALBUM TRACK\s*)?(album track\s*)", "", text, flags=re.IGNORECASE
     )  # (ALBUM TRACK)
-    text = re.sub(r"\s*\(\s*of+icial\s*\)", "", text, flags=re.IGNORECASE)  # (official)
-    text = re.sub(r"\s*\(\s*lyric(s)?\s*\)", "", text, flags=re.IGNORECASE)  # (lyrics)
+    text = re.sub(r"\s*\(\s*of+icial\s*\)", "", text,
+                  flags=re.IGNORECASE)  # (official)
+    text = re.sub(r"\s*\(\s*lyric(s)?\s*\)", "", text,
+                  flags=re.IGNORECASE)  # (lyrics)
     text = re.sub(
         r"\s*\(\s*(of+icial)?\s*lyric(s)?\s*\)", "", text, flags=re.IGNORECASE
     )  # (official lyrics)
-    text = re.sub(r"\s*\(\s*[0-9]{4}\s*\)", "", text, flags=re.IGNORECASE)  # (1999)
+    text = re.sub(r"\s*\(\s*[0-9]{4}\s*\)", "",
+                  text, flags=re.IGNORECASE)  # (1999)
     text = re.sub(
         r"\s+\(\s*(HD|HQ|[0-9]{3,4}p|4K)\s*\)$", "", text
     )  # (HD) (HQ) (1080p) (4K)
@@ -88,9 +92,11 @@ def clean_title(title):
     title = title.strip(" ")
     title = clean_fluff(title)
     title = re.sub(r"\s*\*+\s?\S+\s?\*+$", "", title)  # **NEW**
-    title = re.sub(r"\s*video\s*clip", "", title, flags=re.IGNORECASE)  # video clip
+    title = re.sub(r"\s*video\s*clip", "", title,
+                   flags=re.IGNORECASE)  # video clip
     title = re.sub(r"\s+\(?live\)?$", "", title, flags=re.IGNORECASE)  # live
-    title = re.sub(r"\(\s*\)", "", title)  # Leftovers after e.g. (official video)
+    # Leftovers after e.g. (official video)
+    title = re.sub(r"\(\s*\)", "", title)
     title = re.sub(r"\[\s*]", "", title)  # Leftovers after e.g. [1080p]
     title = re.sub(r"【\s*】", "", title)  # Leftovers after e.g. 【MV】
     title = re.sub(
@@ -103,7 +109,13 @@ def clean_title(title):
     title = re.sub(
         r"[/\s,:;~\-–_\s\"]+$", "", title
     )  # trim trailing white chars and dash
-    return title
+    # Remove everything after '(' including '('
+    title = re.sub('\(.*', '', title)
+    # Remove everything after 'ft' including 'ft'
+    title = re.sub('ft.*', '', title)
+    # Remove everything after ',' including ','
+    title = re.sub(',.*', '', title)
+    return title.strip()
 
 
 def clean_artist(artist):
@@ -121,7 +133,15 @@ def clean_artist(artist):
     artist = re.sub(
         r"[/\s,:;~\-–_\s\"]+$", "", artist
     )  # trim trailing white chars and dash
-    return artist
+    # Remove everything after ' x ' including ' x '
+    artist = re.sub('\sx\s.*', '', artist)
+    # Remove everything after '(' including '('
+    artist = re.sub('\(.*', '', artist)
+    # Remove everything after 'ft' including 'ft'
+    artist = re.sub('ft.*', '', artist)
+    # Remove everything after ',' including ','
+    artist = re.sub(',.*', '', artist)
+    return artist.strip()
 
 
 def in_quotes(text, idx):
@@ -150,4 +170,4 @@ def split_artist_title(text):
         except ValueError:
             continue
         if idx > -1 and not in_quotes(text, idx):
-            return [text[:idx], text[idx + len(separator) :]]
+            return [text[:idx], text[idx + len(separator):]]
