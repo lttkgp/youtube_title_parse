@@ -81,4 +81,4 @@ FILE_EXTENSIONS_RX = re.compile(
 
 
 def remove_file_extensions(title):
-    return FILE_EXTENSIONS_RX.sub("", title)
+    return FILE_EXTENSIONS_RX.sub("", str(title))

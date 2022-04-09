@@ -54,3 +54,10 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 ## License
 
 youtube-title-parse is made available under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Unit Testing
+```python
+pip3 install pytest
+pip3 install six
+```

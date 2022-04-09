@@ -23,11 +23,25 @@ SEPARATORS = [
     "/",
 ]
 
+def clean_characters(text):
+    #todo: condiational  for "english -  korean words" regex
 
+    #todo: condiational  for "Korean words - english words" regex. Do not remove Korean characters if the patterns match. 
+
+    if re.search(r"([A-Za-z])+", text) and not re.search(r"([A-Za-z])+", text): #If english characters, remove all korean.
+        text = re.sub(r"[\u3131-\uD79D]", "", text) 
+        text = re.sub(r"^\s", "", text) 
+    return text
+    
 def clean_mvpv(text):
     """
     Remove various versions of "MV" and "PV" markers
     """
+
+
+    text = re.sub(r"\(\)", "", text)  # ()
+    text = re.sub(r"\(([\s\W])*\)", "", text)  # (optional characters)
+
     text = re.sub(
         r"\s*\[\s*(?:off?icial\s+)?([PM]\/?V)\s*]", "", text, flags=re.IGNORECASE
     )  # [MV] or [M/V]
@@ -50,6 +64,7 @@ def clean_fluff(text):
     """
     Remove fluff
     """
+
     text = clean_mvpv(text)
     text = re.sub(r"\s*\[[^\]]+]$", "", text)  # [whatever] at the end
     text = re.sub(r"^\s*\[[^\]]+]\s*", "", text)  # [whatever] at the start
@@ -78,6 +93,9 @@ def clean_fluff(text):
     text = re.sub(
         r"[\s\-–_]+(HD|HQ|[0-9]{3,4}p|4K)\s*$", "", text
     )  # - HD - HQ - 720p - 4K
+
+    text = clean_characters(text)
+
     return text
 
 
@@ -101,7 +119,7 @@ def clean_title(title):
         r"^[/\s,:;~\-–_\s\"]+", "", title
     )  # trim starting white chars and dash
     title = re.sub(
-        r"[/\s,:;~\-–_\s\"]+$", "", title
+        r"[/\s,:;~\-–_\s\]\'\"]+$", "", title
     )  # trim trailing white chars and dash
     return title
 
@@ -121,6 +139,7 @@ def clean_artist(artist):
     artist = re.sub(
         r"[/\s,:;~\-–_\s\"]+$", "", artist
     )  # trim trailing white chars and dash
+    
     return artist
 
 
@@ -150,4 +169,5 @@ def split_artist_title(text):
         except ValueError:
             continue
         if idx > -1 and not in_quotes(text, idx):
+
             return [text[:idx], text[idx + len(separator) :]]

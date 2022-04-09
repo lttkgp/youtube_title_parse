@@ -20,10 +20,15 @@ tests = [
         "expected": ["T-ARA", "NUMBER NINE"],
         "skip": True,
     },
+    {
+        "input": '미모 포텐 터지는 세정(구구단) 꽃길(prod. By ZICO) 세로라이브 | SEJEONG | Flower Way | SERO LIVE | dingomusic',
+        "expected": ["T-ARA", "NUMBER NINE"],
+        "skip": True,
+    },
     # https://www.youtube.com/watch?v=aeo_nWsu5cs
     {
-        "input": "[MV] YOUNHA(윤하) _ Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))",
-        "expected": ["YOUNHA(윤하)", "Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH(치타))"],
+        "input": "[MV] YOUNHA(윤하) _ Get It?(알아듣겠지) (Feat. HA:TFELT, CHEETAH)",
+        "expected": ["YOUNHA", "Get It? (Feat. HA:TFELT, CHEETAH)"],
     },
 ]
 

@@ -7,7 +7,7 @@ tests = [
     # https://youtu.be/A2RwHnfI2y8
     {
         "input": "Ga-In (가인) - Nostalgia (노스텔지아) - Lyrics [Hangul+Translation] .mov",
-        "expected": ["Ga-In (가인)", "Nostalgia (노스텔지아)"],
+        "expected": ["Ga-In", "Nostalgia"],
     },
     # https://www.youtube.com/watch?v=PYBuIwuD1DA
     {"input": "show me - B-free.m4v", "expected": ["show me", "B-free"]},
